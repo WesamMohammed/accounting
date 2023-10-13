@@ -18,7 +18,7 @@ namespace jwt.Controllers
         }
         /*[Authorize(AppPermissions.products.Create)]*/
         [HttpPost]
-        [Authorize(AppPermissions.products.Create)]
+      //  [Authorize(AppPermissions.products.Create)]
         public async Task<IActionResult> AddProduct(ProductModel productModel)
         {
             if (!ModelState.IsValid)
@@ -36,7 +36,7 @@ namespace jwt.Controllers
             return Ok(result);
         }
         [HttpGet]
-        [Authorize(AppPermissions.products.View)]
+      //  [Authorize(AppPermissions.products.View)]
         public async Task<IActionResult> GetProductByName(string Name)
         {
             if (!ModelState.IsValid)
@@ -56,7 +56,7 @@ namespace jwt.Controllers
             return Ok(result);
         }
         [HttpGet]
-        [Authorize(AppPermissions.products.View)]
+       // [Authorize(AppPermissions.products.View)]
         public async Task<IActionResult> GetProductById(int Id)
         {
             if (!ModelState.IsValid)
@@ -76,7 +76,7 @@ namespace jwt.Controllers
             return Ok(result);
         }
         [HttpGet]
-        [Authorize(AppPermissions.products.View)]
+    //    [Authorize(AppPermissions.products.View)]
         public async Task<IActionResult> GetAllProducts()
         {
            
@@ -93,7 +93,7 @@ namespace jwt.Controllers
             return Ok(result);
         }
         [HttpPost]
-        [AllowAnonymous]
+      //  [AllowAnonymous]
         public async Task<IActionResult> UpdateProduct(ProductModel productModel){
 
              if (!ModelState.IsValid)
