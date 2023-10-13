@@ -64,7 +64,7 @@ builder.Services.AddSwaggerGen(c =>
         Title = "My API",
         Version = "v1"
     });
-    c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+  /*  c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
         In = ParameterLocation.Header,
         Description = "Please insert JWT with Bearer into field",
@@ -84,13 +84,14 @@ builder.Services.AddSwaggerGen(c =>
       new string[] { }
     }
   });
-
+*/
 });
 builder.Services.AddCors(option => {
     option.AddDefaultPolicy(builder => {
         builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
     });
 });
+/*
 builder.Services.AddAuthentication(option =>
 {
     option.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -113,7 +114,7 @@ builder.Services.AddAuthentication(option =>
     };
   
 });
-
+*/
 
 var app = builder.Build();
 
@@ -151,10 +152,13 @@ using (var scope = app.Services.CreateScope())
 }
 
 app.UseHttpsRedirection();
+/*
 app.UseAuthentication();
+*/
 app.UseCors();
-
+/*
 app.UseAuthorization();
+*/
 
 app.MapControllers();
 
