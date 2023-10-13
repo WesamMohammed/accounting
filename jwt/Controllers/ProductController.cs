@@ -8,7 +8,7 @@ namespace jwt.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
-    [AllowAnonymous]
+   // [AllowAnonymous]
     public class ProductController : ControllerBase
     {
         private readonly IProductService _productService;
