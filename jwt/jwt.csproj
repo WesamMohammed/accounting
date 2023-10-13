@@ -32,8 +32,6 @@
     <Folder Include="Repository\" />
   </ItemGroup>
 
-  <ItemGroup>
-    //<ProjectReference Include="..\MyBuildingBolcks\WBuildingBolcks.csproj" />
-  </ItemGroup>
+
 
 </Project>
