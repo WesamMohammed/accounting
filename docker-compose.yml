@@ -6,6 +6,7 @@ services:
     build:
       context: .
       dockerfile: jwt/Dockerfile
-    
+    network_mode: "bridge"
     ports:
       - "3000:80" 
+#sudo docker run -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=04340094Mohammed*" -e "MSSQL_PID=Express" -p 1433:1433 -d mcr.microsoft.com/mssql/server:2019-latest
