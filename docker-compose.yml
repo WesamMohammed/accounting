@@ -10,8 +10,9 @@ services:
      MSSQL_PID: Express
     ports:
      - "1433:1433"
+
   accounting:
-    image: ${DOCKER_REGISTRY-}accounting
+    image: ${DOCKER_REGISTRY-}jwt
     build:
       context: .
       dockerfile: jwt/Dockerfile      
