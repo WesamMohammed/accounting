@@ -1,10 +1,14 @@
 version: '3.4'
-
+networks:
+  custom_network:
+    driver: bridge
 services:
   jwt:
     image: ${DOCKER_REGISTRY-}jwt
+    networks:
+      - custom_network
     build:
       context: .
-      dockerfile: jwt/Dockerfile
+      dockerfile: jwt/Dockerfile      
     ports:
       - "3000:80" 
