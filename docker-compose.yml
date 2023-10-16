@@ -1,14 +1,20 @@
 version: '3.4'
-networks:
-  custom_network:
-    driver: bridge
+
+
 services:
-  jwt:
-    image: ${DOCKER_REGISTRY-}jwt
-    networks:
-      - custom_network
+  localdb:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    environment:
+     ACCEPT_EULA: "Y"
+     MSSQL_SA_PASSWORD: 04340094Mohammed*
+     MSSQL_PID: Express
+    ports:
+     - "1433:1433"
+  accounting:
+    image: ${DOCKER_REGISTRY-}accounting
     build:
       context: .
       dockerfile: jwt/Dockerfile      
     ports:
       - "3000:80" 
+    
