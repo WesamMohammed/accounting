@@ -6,6 +6,6 @@ services:
     build:
       context: .
       dockerfile: jwt/Dockerfile
-    network_mode: "bridge"
+    
     ports:
       - "3000:80" 
