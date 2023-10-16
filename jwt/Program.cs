@@ -13,6 +13,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using jwt.Controllers;
 using jwt.CachingServices;
+using System;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -118,8 +119,10 @@ builder.Services.AddAuthentication(option =>
 
 var app = builder.Build();
 
+
 using (var scope = app.Services.CreateScope())
 {
+    await scope.ServiceProvider.GetRequiredService<ApplicationDbContext>().Database.MigrateAsync();
     var services = scope.ServiceProvider;
     var loggerFactory = services.GetRequiredService<ILoggerFactory>();
     var logger = loggerFactory.CreateLogger("app");
