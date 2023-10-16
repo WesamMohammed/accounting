@@ -38,11 +38,11 @@ options.UseSqlServer(
     builder.Configuration.GetConnectionString("DefualtConnection")
     )
 );
-builder.Services.AddDbContext<db>(options =>
+/*builder.Services.AddDbContext<db>(options =>
 options.UseSqlServer(
     builder.Configuration.GetConnectionString("DefualtConnection")
     )
-);
+);*/
 
 builder.Services.AddScoped<ISalesInvoiceService, SalesInvoiceService>();
 builder.Services.AddScoped<ICustomerService, CustomerService>();

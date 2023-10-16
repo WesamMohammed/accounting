@@ -47,7 +47,7 @@ namespace jwt.Models
 
 
     }
-    public class db : DbContext
+   /* public class db : DbContext
     {
         public db(IOptions<db> options)
         {
@@ -58,5 +58,5 @@ namespace jwt.Models
             
         }
         public DbSet<Product> MyProperty { get; set; }
-    }
+    }*/
 }
