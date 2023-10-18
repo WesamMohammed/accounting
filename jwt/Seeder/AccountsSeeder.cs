@@ -1,4 +1,6 @@
-﻿namespace jwt.Seeder
+﻿using Microsoft.Extensions.Logging;
+
+namespace jwt.Seeder
 {
     public class AccountsSeeder : IDataSeeder
     {
@@ -18,19 +20,26 @@
             var accouns = await _dbContext.Set<Account>().ToListAsync();
             if(accouns.Any())
             {
-                _logger.LogInformation($"######## {nameof(accouns)}: #########",accouns);
+                _logger.LogInformation($"######## {nameof(accouns)}:{accouns} #########");
                 return;
             }
             var newAccounts =new List<Account>(){
-                new Account { Name="الأصول",Id=1,AccountNumber=1,AccountType=AccountType.Other,AppearIn=AppearIn.FINANCIAL},
-                new Account { Name = "الخصوم", Id = 2, AccountNumber = 2, AccountType = AccountType.Other, AppearIn = AppearIn.INCOME },
-                new Account { Name = "الإيرادات", Id = 3, AccountNumber = 3, AccountType = AccountType.Other, AppearIn = AppearIn.FINANCIAL },
-                new Account { Name = "المصروفات", Id = 4, AccountNumber = 4, AccountType = AccountType.Other, AppearIn = AppearIn.INCOME },
+                new Account { Name="الأصول",Id=1,AccountNumber=1,AccountType=AccountType.Other,AppearIn=AppearIn.FINANCIAL,ParentId=null,IsSub=false},
+                new Account { Name = "الخصوم", Id = 2, AccountNumber = 2, AccountType = AccountType.Other, AppearIn = AppearIn.INCOME ,ParentId=null,IsSub=false},
+                new Account { Name = "الإيرادات", Id = 3, AccountNumber = 3, AccountType = AccountType.Other, AppearIn = AppearIn.FINANCIAL ,ParentId=null,IsSub=false},
+                new Account { Name = "المصروفات", Id = 4, AccountNumber = 4, AccountType = AccountType.Other, AppearIn = AppearIn.INCOME ,ParentId=null,IsSub=false}
 
             };
-            _logger.LogInformation($"######## {nameof(newAccounts)}: #########", newAccounts);
+            _logger.LogInformation($"######## {nameof(newAccounts)}: {newAccounts} #########", newAccounts);
             await _dbContext.Set<Account>().AddRangeAsync(newAccounts);
-            await _dbContext.SaveChangesAsync();
+            try
+            {
+                await _dbContext.SaveChangesAsync();
+            }
+            catch(Exception ex)
+            {
+                _logger.LogError($"Message:{ex.Message}   erros:{ex.InnerException}");
+            }
             
         }
     }
