@@ -10,13 +10,13 @@ namespace jwt.Models
         public InvoiceType InvoiceType { get; set; }
         public DateTime Date { get; set; }
       
-        public int AccountDainId { get; set; } = 24;
+        public int AccountDainId { get; set; } 
 
      
 
         public int StoreId { get; set; }
 
-        public int AccountMadinId { get; set; } = 41;
+        public int AccountMadinId { get; set; } 
         [JsonIgnore]
         public OperationType OperationType { get; set; }
         public decimal Total { get; set; }

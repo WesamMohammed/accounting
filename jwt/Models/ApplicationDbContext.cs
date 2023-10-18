@@ -20,6 +20,7 @@ namespace jwt.Models
 
             modelBuilder.Entity<ProductUnit>().HasIndex(x => new { x.ProductId, x.UnitName }).IsUnique(true);*/
             modelBuilder.Entity<ProductUnit>().HasIndex(x => x.UnitBarCode).IsUnique(true);
+    /*            modelBuilder.Entity<Account>().HasData*/
          /*   modelBuilder.Entity<InvoiceMaster>().HasOne(a => a.AccountingMaster).WithOne(a => a.InvoiceMaster).IsRequired(false).HasForeignKey<InvoiceMaster>(a => a.AccountingMasterId).IsRequired(false);*/
 
 

@@ -9,7 +9,7 @@ namespace jwt.Models
         public InvoiceType InvoiceType { get; set; }
         public DateTime Date { get; set; }
         [JsonIgnore]
-        public int AccountMadinId { get; set; } = 26;
+        public int AccountMadinId { get; set; } 
 
         public int StoreId { get; set; }
 
