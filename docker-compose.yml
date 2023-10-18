@@ -1,5 +1,6 @@
 version: '3.4'
-
+volumes:
+  redis_data:  # Define a named volume for Redis data persistence
 
 services:
   localdb:
@@ -10,6 +11,16 @@ services:
      MSSQL_PID: Express
     ports:
      - "1433:1433"
+  redis:
+    image: "redis:latest" # Use the latest Redis image from Docker Hub
+    ports:
+      - "6379:6379" # Map container port 6379 to host port 6379
+    volumes:
+      - redis_data:/data # Mount a volume to persist Redis data
+    command: ["redis-server", "--appendonly", "yes"] # Enable persistence with append-only file
+
+
+
   jwt:
     image: ${DOCKER_REGISTRY-}jwt
     build:
