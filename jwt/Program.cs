@@ -14,6 +14,7 @@ using Microsoft.OpenApi.Models;
 using jwt.Controllers;
 using jwt.CachingServices;
 using System;
+using jwt.Seeder;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -38,6 +39,7 @@ options.UseSqlServer(
     builder.Configuration.GetConnectionString("DefualtConnection")
     )
 );
+builder.Services.AddScoped<IDataSeeder, AccountsSeeder>();
 /*builder.Services.AddDbContext<db>(options =>
 options.UseSqlServer(
     builder.Configuration.GetConnectionString("DefualtConnection")
@@ -65,7 +67,7 @@ builder.Services.AddSwaggerGen(c =>
         Title = "My API",
         Version = "v1"
     });
-  /*  c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
         In = ParameterLocation.Header,
         Description = "Please insert JWT with Bearer into field",
@@ -85,7 +87,7 @@ builder.Services.AddSwaggerGen(c =>
       new string[] { }
     }
   });
-*/
+
 });
 builder.Services.AddCors(option => {
     option.AddDefaultPolicy(builder => {
@@ -125,6 +127,8 @@ using (var scope = app.Services.CreateScope())
 {
     await scope.ServiceProvider.GetRequiredService<ApplicationDbContext>().Database.MigrateAsync();
     var services = scope.ServiceProvider;
+    var accounseeder=services.GetRequiredService<IDataSeeder>();
+    await accounseeder.SeedDataAsync();
     var loggerFactory = services.GetRequiredService<ILoggerFactory>();
     var logger = loggerFactory.CreateLogger("app");
     try
