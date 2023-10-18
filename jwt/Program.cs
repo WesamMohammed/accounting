@@ -92,7 +92,7 @@ builder.Services.AddCors(option => {
         builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
     });
 });
-/*
+
 builder.Services.AddAuthentication(option =>
 {
     option.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -101,21 +101,22 @@ builder.Services.AddAuthentication(option =>
 {
     option.RequireHttpsMetadata = false;
     option.SaveToken = false;
-    option.TokenValidationParameters = new TokenValidationParameters() { 
-    IssuerSigningKey=new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"])),
+    option.TokenValidationParameters = new TokenValidationParameters()
+    {
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"])),
         ValidateIssuer = true,
         ValidateAudience = true,
         ValidateLifetime = true,
-        RequireExpirationTime=false,
+        RequireExpirationTime = false,
         ClockSkew = TimeSpan.Zero,
         ValidateIssuerSigningKey = true,
         ValidAudience = builder.Configuration["Jwt:Audience"],
         ValidIssuer = builder.Configuration["Jwt:Issuer"],
-       
+
     };
-  
+
 });
-*/
+
 
 var app = builder.Build();
 
@@ -154,14 +155,14 @@ using (var scope = app.Services.CreateScope())
     app.UseSwaggerUI();
 }
 
-//app.UseHttpsRedirection();
-/*
+app.UseHttpsRedirection();
+
 app.UseAuthentication();
-*/
+
 app.UseCors();
-/*
+
 app.UseAuthorization();
-*/
+
 
 app.MapControllers();
 
