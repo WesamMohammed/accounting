@@ -16,7 +16,7 @@ namespace jwt.Controllers
         {
             _productService = productService;
         }
-        [Authorize(AppPermissions.products.Create)]
+        
         [HttpPost]
         [Authorize(AppPermissions.products.Create)]
         public async Task<IActionResult> AddProduct(ProductModel productModel)

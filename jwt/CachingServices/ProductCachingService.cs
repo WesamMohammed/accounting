@@ -23,7 +23,7 @@ namespace jwt.CachingServices
 
         public  async Task<List<ProductModel>> GetAllProductsAsync() 
         {
-            string Key = "Productss";
+            string Key = "Products";
 
             var result = await _distributedCache.GetOrCreateCache(Key, async () =>
             {
