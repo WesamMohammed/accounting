@@ -26,8 +26,8 @@ builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IPurchasesInvoiceService, PurchasesInvoiceService>();
 builder.Services.AddScoped<IUsersRolesPermissionsService, UsersRolesPermissionsService>();
 builder.Services.AddScoped<IAccountService,AccountService>();
-builder.Services.AddScoped<IProductService, ProductCachingService>();
-builder.Services.AddScoped<ProductService>();
+//builder.Services.AddScoped<IProductService, ProductCachingService>();
+builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddStackExchangeRedisCache(option =>
 {
     option.Configuration = builder.Configuration.GetConnectionString("Redis");
