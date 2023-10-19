@@ -22,6 +22,7 @@ namespace jwt.Controllers
             {
                 return BadRequest(ModelState);
             }
+            purchasesInvoice.AccountMadinId = 6;
             var result = await _purchasesInvoice.AddPurchasesInvoiceAsync(purchasesInvoice);
 
 
