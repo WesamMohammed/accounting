@@ -20,8 +20,8 @@ namespace jwt.Seeding
             {
                 FirstName = "Demo",
                 LastName = "Demo",
-                Email = "Demo@gmail.com",
-                UserName = "Demo",
+                Email = "demo@gmail.com",
+                UserName = "demo",
                 EmailConfirmed = true,
             };
             var PasswordDefaultAdminUser = "04340094Mohammed*";
