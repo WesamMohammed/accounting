@@ -26,8 +26,7 @@ namespace jwt.Seeding
             };
             var PasswordDefaultAdminUser = "04340094Mohammed*";
             var PasswordDemo = "Demo1234*";
-            if (userManager.Users.All(u => u.Id != DefaultAdminUser.Id))
-            {
+           
                 var user = await userManager.FindByEmailAsync(DefaultAdminUser.Email);
                 if (user == null)
                 {
@@ -38,13 +37,13 @@ namespace jwt.Seeding
                 var demo = await userManager.FindByEmailAsync(DemoUser.Email);
                 if (demo == null)
                 {
-                    await userManager.CreateAsync(DemoUser, PasswordDefaultAdminUser);
+                    await userManager.CreateAsync(DemoUser, PasswordDemo);
                     await userManager.AddToRoleAsync(DemoUser, Roles.Demo.ToString());
                     await userManager.AddToRoleAsync(DemoUser, Roles.User.ToString());
                 }
                  await roleManager.SeedClaimsForAdminRole();
 
-            }
+            
 
            
         }
