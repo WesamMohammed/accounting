@@ -53,13 +53,13 @@ namespace jwt.Services
             var creditorAccountCost = new AccountingDetail();
             creditorAccountCost.Amount = TotalCost;
             creditorAccountCost.CreditorOrDebtor = CreditorOrDebtor.Creditor;
-            creditorAccountCost.AccountId = 26;
+            creditorAccountCost.AccountId = InvoiceMaster.AccountDainId;
             InvoiceMaster.AccountingMaster.AccountingDetails.Add(creditorAccountCost);
 
             var DebtorAccountCost = new AccountingDetail();
             DebtorAccountCost.Amount = TotalCost;
             DebtorAccountCost.CreditorOrDebtor = CreditorOrDebtor.Debtor;
-            DebtorAccountCost.AccountId = 29;
+            DebtorAccountCost.AccountId = InvoiceMaster.AccountMadinId;
             InvoiceMaster.AccountingMaster.AccountingDetails.Add(DebtorAccountCost);
 
 
