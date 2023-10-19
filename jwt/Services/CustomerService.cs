@@ -21,12 +21,12 @@ namespace jwt.Services
         {
            
             var customers = await _applicationDbContext.Customers.Include(a => a.Account).Where(a => 
-            ((customerModel.Id==null ?  true: a.Id == customerModel.Id))).ToListAsync();
+            ((customerModel.Id==null ?  true: a.Id == customerModel.Id)&&a.Account.IsSub)).ToListAsync();
             return _mapper.Map<List<CustomerModel>>(customers);
         }
         public async Task<List<CustomerModel>> GetAllSuppliersAsync()
         {
-            var supplires = await _applicationDbContext.Suppliers.Include(a => a.Account).ToListAsync();
+            var supplires = await _applicationDbContext.Suppliers.Include(a => a.Account).Where(a=>a.Account.IsSub).ToListAsync();
             return _mapper.Map<List<CustomerModel>>(supplires);
         }
         public async Task<CustomerModel> AddCustomer(CustomerModel customerModel){

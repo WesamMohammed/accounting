@@ -74,9 +74,13 @@ namespace jwt.Seeding
             var Allpermissions = AppPermissions.GetPermmissionsForModule(module);
             foreach(var permission in Allpermissions)
             {
-                if(!allClaims.Any(a=>a.Type=="Permissions"&& a.Value==permission))
-                await roleManager.AddClaimAsync(role, new Claim("Permissions", permission));
+                if(!allClaims.Any(a=>a.Type=="Permissions"&& a.Value == permission)) {
+                    if(!(role.Name==Roles.Demo.ToString()&&( permission== "Permission.Roles.Delete" || permission== "Permission.Users.Delete")))
+                    await roleManager.AddClaimAsync(role, new Claim("Permissions", permission));
+                }
+                
             }
+            
         }
 
     }
