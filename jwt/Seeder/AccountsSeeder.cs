@@ -24,10 +24,10 @@ namespace jwt.Seeder
                 return;
             }
             var newAccounts =new List<Account>(){
-                new Account { Name="الأصول",Id=1,AccountNumber=1,AccountType=AccountType.Other,AppearIn=AppearIn.FINANCIAL,ParentId=null,IsSub=false},
-                new Account { Name = "الخصوم", Id = 2, AccountNumber = 2, AccountType = AccountType.Other, AppearIn = AppearIn.INCOME ,ParentId=null,IsSub=false},
-                new Account { Name = "الإيرادات", Id = 3, AccountNumber = 3, AccountType = AccountType.Other, AppearIn = AppearIn.FINANCIAL ,ParentId=null,IsSub=false},
-                new Account { Name = "المصروفات", Id = 4, AccountNumber = 4, AccountType = AccountType.Other, AppearIn = AppearIn.INCOME ,ParentId=null,IsSub=false}
+                new Account { Name="الأصول",AccountNumber=1,AccountType=AccountType.Other,AppearIn=AppearIn.FINANCIAL,ParentId=null,IsSub=false},
+                new Account { Name = "الخصوم", AccountNumber = 2, AccountType = AccountType.Other, AppearIn = AppearIn.INCOME ,ParentId=null,IsSub=false},
+                new Account { Name = "الإيرادات", AccountNumber = 3, AccountType = AccountType.Other, AppearIn = AppearIn.FINANCIAL ,ParentId=null,IsSub=false},
+                new Account { Name = "المصروفات", AccountNumber = 4, AccountType = AccountType.Other, AppearIn = AppearIn.INCOME ,ParentId=null,IsSub=false}
 
             };
             _logger.LogInformation($"######## {nameof(newAccounts)}: {newAccounts} #########", newAccounts);
