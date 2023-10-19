@@ -16,7 +16,16 @@ namespace jwt.Seeding
                 UserName="wesammohammed",
                 EmailConfirmed=true,
             };
+            var DemoUser = new ApplicationUser()
+            {
+                FirstName = "Demo",
+                LastName = "Demo",
+                Email = "Demo@gmail.com",
+                UserName = "Demo",
+                EmailConfirmed = true,
+            };
             var PasswordDefaultAdminUser = "04340094Mohammed*";
+            var PasswordDemo = "Demo1234*";
             if (userManager.Users.All(u => u.Id != DefaultAdminUser.Id))
             {
                 var user = await userManager.FindByEmailAsync(DefaultAdminUser.Email);
@@ -26,8 +35,15 @@ namespace jwt.Seeding
                     await userManager.AddToRoleAsync(DefaultAdminUser, Roles.Admin.ToString());
                     await userManager.AddToRoleAsync(DefaultAdminUser, Roles.User.ToString());
                 }
-
+                var demo = await userManager.FindByEmailAsync(DemoUser.Email);
+                if (demo == null)
+                {
+                    await userManager.CreateAsync(DemoUser, PasswordDefaultAdminUser);
+                    await userManager.AddToRoleAsync(DemoUser, Roles.Demo.ToString());
+                    await userManager.AddToRoleAsync(DemoUser, Roles.User.ToString());
+                }
                  await roleManager.SeedClaimsForAdminRole();
+
             }
 
            
@@ -35,6 +51,7 @@ namespace jwt.Seeding
         private static async Task SeedClaimsForAdminRole(this RoleManager<IdentityRole> roleManager)
         {
             var adminRole = await roleManager.FindByNameAsync(Roles.Admin.ToString());
+            var DemoRole = await roleManager.FindByNameAsync(Roles.Demo.ToString());
 
             await roleManager.AddPermissionClaim(adminRole, "Products");
             await roleManager.AddPermissionClaim(adminRole, "Sales");
@@ -43,6 +60,14 @@ namespace jwt.Seeding
             await roleManager.AddPermissionClaim(adminRole, "Customers");
             await roleManager.AddPermissionClaim(adminRole, "Roles");
             await roleManager.AddPermissionClaim(adminRole, "Users");
+
+            await roleManager.AddPermissionClaim(DemoRole, "Products");
+            await roleManager.AddPermissionClaim(DemoRole, "Sales");
+            await roleManager.AddPermissionClaim(DemoRole, "Purchases");
+            await roleManager.AddPermissionClaim(DemoRole, "Accounts");
+            await roleManager.AddPermissionClaim(DemoRole, "Customers");
+            await roleManager.AddPermissionClaim(DemoRole, "Roles");
+            await roleManager.AddPermissionClaim(DemoRole, "Users");
         }
         public static async Task AddPermissionClaim(this RoleManager<IdentityRole> roleManager,IdentityRole role, string module)
         {
