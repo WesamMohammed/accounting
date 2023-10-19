@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using System.Xml.Linq;
 
 namespace jwt.Seeder
 {
@@ -24,10 +25,22 @@ namespace jwt.Seeder
                 return;
             }
             var newAccounts =new List<Account>(){
-                new Account { Name="الأصول",AccountNumber=1,AccountType=AccountType.Other,AppearIn=AppearIn.FINANCIAL,ParentId=null,IsSub=false},
-                new Account { Name = "الخصوم", AccountNumber = 2, AccountType = AccountType.Other, AppearIn = AppearIn.INCOME ,ParentId=null,IsSub=false},
-                new Account { Name = "الإيرادات", AccountNumber = 3, AccountType = AccountType.Other, AppearIn = AppearIn.FINANCIAL ,ParentId=null,IsSub=false},
-                new Account { Name = "المصروفات", AccountNumber = 4, AccountType = AccountType.Other, AppearIn = AppearIn.INCOME ,ParentId=null,IsSub=false}
+                new Account { Name="الأصول",AccountNumber=01,AccountType=AccountType.Other,AppearIn=AppearIn.FINANCIAL,ParentId=null,IsSub=false
+                },
+                new Account { Name = "الخصوم", AccountNumber = 02, AccountType = AccountType.Other, AppearIn = AppearIn.FINANCIAL ,ParentId=null,IsSub=false},
+                new Account { Name = "الإيرادات", AccountNumber = 03, AccountType = AccountType.Other, AppearIn = AppearIn.INCOME ,ParentId=null,IsSub=false,
+                    Children = new List < Account >(){
+                    new Account(){ Name="المبيعات",AccountNumber=000003,AccountType=AccountType.Other,AppearIn=AppearIn.FINANCIAL,ParentId=null,IsSub=true,
+                    
+                },
+                } },
+                new Account { Name = "المصروفات", AccountNumber = 04, AccountType = AccountType.Other, AppearIn = AppearIn.INCOME ,ParentId=null,IsSub=false,
+                 Children = new List < Account >(){
+                    new Account(){ Name="المشتريات",AccountNumber=000004,AccountType=AccountType.Other,AppearIn=AppearIn.FINANCIAL,ParentId=null,IsSub=true,
+                    }
+                },
+
+                }
 
             };
             _logger.LogInformation($"######## {nameof(newAccounts)}: {newAccounts} #########", newAccounts);
