@@ -22,11 +22,12 @@ namespace jwt.Controllers
 
         public async Task<IActionResult> AddSales([FromBody] SalesInvoiceModel salesInvoice)
         {
+            
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            
+            salesInvoice.AccountDainId = 5;
             salesInvoice.OperationType = OperationType.SalesInvoice;
             var result=await _salesInvoiceService.AddSalesInvoiceAsync(salesInvoice);
 
