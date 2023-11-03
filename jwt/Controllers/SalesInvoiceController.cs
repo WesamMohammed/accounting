@@ -52,12 +52,7 @@ namespace jwt.Controllers
 
             
             var result = await _salesInvoiceService.GetAllSalesInvoiceAsync(OperationType.SalesInvoice,salesInvoiceModel);
-            if (result is null)
-            {
-
-                return BadRequest("There is No Sales Exist");
-
-            }
+         
         //    result.ForEach(a => { a.AccountDain = null; a.AccountDainId = 0; });
 
             return Ok(result);
@@ -164,6 +159,8 @@ namespace jwt.Controllers
             {
                 return BadRequest();
             }
+            salesInvoice.AccountDainId = 5;
+
             var result = await _salesInvoiceService.UpdateSalesInvoiceAsync(salesInvoice);
             if(result is null)
             {
