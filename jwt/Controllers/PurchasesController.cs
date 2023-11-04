@@ -22,7 +22,7 @@ namespace jwt.Controllers
             {
                 return BadRequest(ModelState);
             }
-            purchasesInvoice.AccountMadinId = 16;
+            purchasesInvoice.AccountMadinId = 16;//حساب المخزون السلعي 
             var result = await _purchasesInvoice.AddPurchasesInvoiceAsync(purchasesInvoice);
 
 
@@ -76,6 +76,7 @@ namespace jwt.Controllers
             {
                 return BadRequest();
             }
+            salesInvoice.AccountMadinId = 16;//حساب المخزون السلعي 
             var result = await _purchasesInvoice.UpdateSalesInvoiceAsync(salesInvoice);
             if(result is null)
             {
