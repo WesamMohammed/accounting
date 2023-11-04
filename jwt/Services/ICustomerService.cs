@@ -8,6 +8,7 @@ namespace jwt.Services
         Task<List<CustomerModel>> GetAllSuppliersAsync();
          Task<CustomerModel> AddCustomer(CustomerModel customerModel);
           Task<List<AccountShort>> GetMainAccountsCustomerType();
+         Task<List<AccountShort>> GetMainAccountsSupplierTyse();
           Task<CustomerModel> UpdateCustomer(CustomerModel customerModel);
     }
 }

@@ -55,7 +55,14 @@ namespace jwt.Controllers
         var result=await _customerService.GetMainAccountsCustomerType();
         return Ok(result);
     }
+        [HttpGet]
+        [AllowAnonymous]
+public async Task<IActionResult> GetMainAccountsSuppliers()
+        {
+            var result = await _customerService.GetMainAccountsSupplierTyse();
+            return Ok(result);
 
+        }
     [HttpPost]
     [AllowAnonymous]
     public async Task<IActionResult> UpdateCustomer(CustomerModel customerModel){

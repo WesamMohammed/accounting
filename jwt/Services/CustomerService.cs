@@ -88,5 +88,12 @@ return _mapper.Map<CustomerModel>(account.Customer);
             return _mapper.Map<List<AccountShort>>(accounts);
 
         }
-}
+        public async Task<List<AccountShort>> GetMainAccountsSupplierTyse()
+        {
+
+            var accounts = await _applicationDbContext.Account.Where(a => a.AccountType == AccountType.Supplier && a.IsSub == false).ToListAsync();
+            return _mapper.Map<List<AccountShort>>(accounts);
+
+        }
+    }
 }
