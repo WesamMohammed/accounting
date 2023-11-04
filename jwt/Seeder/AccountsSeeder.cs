@@ -25,7 +25,10 @@ namespace jwt.Seeder
                 return;
             }
             var newAccounts =new List<Account>(){
-                new Account { Name="الأصول",AccountNumber=01,AccountType=AccountType.Other,AppearIn=AppearIn.FINANCIAL,ParentId=null,IsSub=false
+                new Account { Name="الأصول",AccountNumber=01,AccountType=AccountType.Other,AppearIn=AppearIn.FINANCIAL,ParentId=null,IsSub=false,Children=new List<Account>()
+                {
+                    new Account{Name= "المخزون",AccountNumber=000001}
+                }
                 },
                 new Account { Name = "الخصوم", AccountNumber = 02, AccountType = AccountType.Other, AppearIn = AppearIn.FINANCIAL ,ParentId=null,IsSub=false},
                 new Account { Name = "الإيرادات", AccountNumber = 03, AccountType = AccountType.Other, AppearIn = AppearIn.INCOME ,ParentId=null,IsSub=false,

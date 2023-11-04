@@ -39,7 +39,7 @@ namespace jwt.Controllers
         public async Task<IActionResult>AddReturnSales(SalesInvoiceModel salesInvoice)
         {
             salesInvoice.OperationType = OperationType.ReturnSalesInvoice;
-            
+            salesInvoice.AccountMadinId = 18;//حساب مرتجع المبيعات
                var result = await _salesInvoiceService.AddReturneSalesAsync(salesInvoice);
             return Ok(result);
             
@@ -159,7 +159,7 @@ namespace jwt.Controllers
             {
                 return BadRequest();
             }
-            salesInvoice.AccountDainId = 5;
+            salesInvoice.AccountDainId = 5;//حساب المبيعات 
 
             var result = await _salesInvoiceService.UpdateSalesInvoiceAsync(salesInvoice);
             if(result is null)
@@ -177,6 +177,7 @@ namespace jwt.Controllers
             {
                 return BadRequest();
             }
+            salesInvoice.AccountMadinId = 18;//حساب مرتجع المبيعات
             var result = await _salesInvoiceService.UpdateReturnSalesAsync(salesInvoice);
             if (result is null)
             {

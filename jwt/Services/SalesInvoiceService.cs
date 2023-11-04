@@ -41,25 +41,25 @@ namespace jwt.Services
             var creditorAccount = new AccountingDetail();
             creditorAccount.Amount = InvoiceMaster.Total;
             creditorAccount.CreditorOrDebtor = CreditorOrDebtor.Creditor;
-            creditorAccount.AccountId = InvoiceMaster.AccountDainId;
+            creditorAccount.AccountId = InvoiceMaster.AccountDainId;//حساب المبيعات
             InvoiceMaster.AccountingMaster.AccountingDetails.Add(creditorAccount);
-
+            
             var DebtorAccount = new AccountingDetail();
             DebtorAccount.Amount = InvoiceMaster.Total;
             DebtorAccount.CreditorOrDebtor = CreditorOrDebtor.Debtor;
-            DebtorAccount.AccountId = InvoiceMaster.AccountMadinId;
+            DebtorAccount.AccountId = InvoiceMaster.AccountMadinId;//حساب الفاتورة
             InvoiceMaster.AccountingMaster.AccountingDetails.Add(DebtorAccount);
 
             var creditorAccountCost = new AccountingDetail();
             creditorAccountCost.Amount = TotalCost;
             creditorAccountCost.CreditorOrDebtor = CreditorOrDebtor.Creditor;
-            creditorAccountCost.AccountId = InvoiceMaster.AccountDainId;
+            creditorAccountCost.AccountId = 16;//حساب المخزون السلعي
             InvoiceMaster.AccountingMaster.AccountingDetails.Add(creditorAccountCost);
 
             var DebtorAccountCost = new AccountingDetail();
             DebtorAccountCost.Amount = TotalCost;
             DebtorAccountCost.CreditorOrDebtor = CreditorOrDebtor.Debtor;
-            DebtorAccountCost.AccountId = InvoiceMaster.AccountMadinId;
+            DebtorAccountCost.AccountId = 17;//حساب تكلفة المبيعات
             InvoiceMaster.AccountingMaster.AccountingDetails.Add(DebtorAccountCost);
 
 
@@ -108,24 +108,27 @@ namespace jwt.Services
             var creditorAccount = new AccountingDetail();
             creditorAccount.Amount = InvoiceMaster.Total;
             creditorAccount.CreditorOrDebtor = CreditorOrDebtor.Creditor;
-            creditorAccount.AccountId = InvoiceMaster.AccountDainId;
+            creditorAccount.AccountId = InvoiceMaster.AccountDainId;//حساب الفاتورة
             InvoiceMaster.AccountingMaster.AccountingDetails.Add(creditorAccount);
 
             var DebtorAccount = new AccountingDetail();
             DebtorAccount.Amount = InvoiceMaster.Total;
             DebtorAccount.CreditorOrDebtor = CreditorOrDebtor.Debtor;
-            DebtorAccount.AccountId = InvoiceMaster.AccountMadinId;
+            DebtorAccount.AccountId = InvoiceMaster.AccountMadinId;//حساب مرتجع المبيعات
             InvoiceMaster.AccountingMaster.AccountingDetails.Add(DebtorAccount);
+
+
+
             var creditorAccountCost = new AccountingDetail();
             creditorAccountCost.Amount = TotalCost;
             creditorAccountCost.CreditorOrDebtor = CreditorOrDebtor.Creditor;
-            creditorAccountCost.AccountId = 29;
+            creditorAccountCost.AccountId = 17; //حساب تكلفة المبيعات
             InvoiceMaster.AccountingMaster.AccountingDetails.Add(creditorAccountCost);
 
             var DebtorAccountCost = new AccountingDetail();
             DebtorAccountCost.Amount = TotalCost;
             DebtorAccountCost.CreditorOrDebtor = CreditorOrDebtor.Debtor;
-            DebtorAccountCost.AccountId = 26;
+            DebtorAccountCost.AccountId = 16;//حساب المخزون السلعي
             InvoiceMaster.AccountingMaster.AccountingDetails.Add(DebtorAccountCost);
 
 
@@ -177,8 +180,7 @@ namespace jwt.Services
             InvoiceMaster.Total = salesInvoice.Total;
             InvoiceMaster.CustomerId = salesInvoice.CustomerId;
 
-            //  InvoiceMaster.AccountingMaster.OperationType = InvoiceMaster.OperationType;
-         //   InvoiceMaster.AccountingMaster.AccountingDetails = new List<AccountingDetail>();
+        
             var creditorAccount = new AccountingDetail();
             creditorAccount.Amount = salesInvoice.Total;
             creditorAccount.CreditorOrDebtor = CreditorOrDebtor.Creditor;
@@ -193,13 +195,13 @@ namespace jwt.Services
             var creditorAccountCost = new AccountingDetail();
             creditorAccountCost.Amount = TotalCost;
             creditorAccountCost.CreditorOrDebtor = CreditorOrDebtor.Creditor;
-            creditorAccountCost.AccountId = InvoiceMaster.AccountDainId; 
+            creditorAccountCost.AccountId = 16;//حساب المخون السلعي
             InvoiceMaster.AccountingMaster.AccountingDetails.Add(creditorAccountCost);
 
             var DebtorAccountCost = new AccountingDetail();
             DebtorAccountCost.Amount = TotalCost;
             DebtorAccountCost.CreditorOrDebtor = CreditorOrDebtor.Debtor;
-            DebtorAccountCost.AccountId = InvoiceMaster.AccountMadinId;
+            DebtorAccountCost.AccountId = 17;//حساب تكلفة المبيعات
             InvoiceMaster.AccountingMaster.AccountingDetails.Add(DebtorAccountCost);
             InvoiceMaster.AccountingMaster.Date = InvoiceMaster.Date;
 
@@ -268,24 +270,24 @@ namespace jwt.Services
             var creditorAccount = new AccountingDetail();
             creditorAccount.Amount = InvoiceMaster.Total;
             creditorAccount.CreditorOrDebtor = CreditorOrDebtor.Creditor;
-            creditorAccount.AccountId = InvoiceMaster.AccountDainId;
+            creditorAccount.AccountId = InvoiceMaster.AccountDainId;//حساب الفاتورة
             InvoiceMaster.AccountingMaster.AccountingDetails.Add(creditorAccount);
 
             var DebtorAccount = new AccountingDetail();
             DebtorAccount.Amount = InvoiceMaster.Total;
             DebtorAccount.CreditorOrDebtor = CreditorOrDebtor.Debtor;
-            DebtorAccount.AccountId = InvoiceMaster.AccountMadinId;
+            DebtorAccount.AccountId = InvoiceMaster.AccountMadinId;//حساب مرتجع المبيعات
             InvoiceMaster.AccountingMaster.AccountingDetails.Add(DebtorAccount);
             var creditorAccountCost = new AccountingDetail();
             creditorAccountCost.Amount = TotalCost;
             creditorAccountCost.CreditorOrDebtor = CreditorOrDebtor.Creditor;
-            creditorAccountCost.AccountId = 29;
+            creditorAccountCost.AccountId = 17; //حساب تكلفة المبيعات
             InvoiceMaster.AccountingMaster.AccountingDetails.Add(creditorAccountCost);
 
             var DebtorAccountCost = new AccountingDetail();
             DebtorAccountCost.Amount = TotalCost;
             DebtorAccountCost.CreditorOrDebtor = CreditorOrDebtor.Debtor;
-            DebtorAccountCost.AccountId = 26;
+            DebtorAccountCost.AccountId = 16;//حساب المخزون السلعي
             InvoiceMaster.AccountingMaster.AccountingDetails.Add(DebtorAccountCost);
             InvoiceMaster.AccountingMaster.Date = InvoiceMaster.Date;
             var result = await _applicationDbContext.SaveChangesAsync();
