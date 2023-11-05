@@ -49,7 +49,7 @@ namespace jwt.Services
             var account=new Account{
                 Name=customerModel.Name,
                 IsSub=true,
-                AccountType=AccountType.Customer,
+                AccountType=Paretn.AccountType,
                 AppearIn=AppearIn.FINANCIAL,
                 AccountNumber=(int)(++maxAccountNumber),
                 ParentId=Paretn.Id,
