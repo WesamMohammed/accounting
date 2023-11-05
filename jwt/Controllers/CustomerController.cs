@@ -75,9 +75,9 @@ namespace jwt.Controllers
             return Ok(result);
 
         }
-        [HttpGet("id")]
+        [HttpGet]
         [AllowAnonymous]
-        public async Task<IActionResult> GetCustomerById([FromRoute] int id)
+        public async Task<IActionResult> GetCustomerById(int id)
         {
             var result = await _customerService.GetById(id, AccountType.Customer);
             if (result is null)
@@ -87,9 +87,9 @@ namespace jwt.Controllers
             return Ok(result);
 
         }
-        [HttpGet("id")]
+        [HttpGet]
         [AllowAnonymous]
-        public async Task<IActionResult> GetSupplierById([FromRoute] int id)
+        public async Task<IActionResult> GetSupplierById(int id)
         {
             var result = await _customerService.GetById(id,AccountType.Supplier);
             if (result is null)
