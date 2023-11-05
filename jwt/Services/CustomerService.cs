@@ -59,24 +59,36 @@ namespace jwt.Services
             };
         await _applicationDbContext.Account.AddAsync(account);
         await _applicationDbContext.SaveChangesAsync();
-        return _mapper.Map<CustomerModel>(customer);
+        return customerModel;
 
 
         }
         public async Task<CustomerModel> UpdateCustomer(CustomerModel customerModel){
-            var customer = await _applicationDbContext.Customers.Include(a=>a.Account).FirstOrDefaultAsync(a=>a.Id==customerModel.Id);
-            var account= await _applicationDbContext.Account.Include(a=>a.Customer).FirstOrDefaultAsync(a=>a.Id==customer.AccountId);
+         //   var customer = await _applicationDbContext.Customers.Include(a=>a.Account).FirstOrDefaultAsync(a=>a.Id==customerModel.Id);
+            var account= await _applicationDbContext.Account.Include(a=>a.Customer).Include(a=>a.Supplier).FirstOrDefaultAsync(a=>(a.Customer.Id==customerModel.Id)||(a.Supplier.Id==customerModel.Id));
 
             if(customerModel.Account.ParentId!=account.ParentId){
                 return null;
             }
 
-            account.Name=customerModel.Name;
-            account.Customer.Name=customerModel.Name;
-            account.Customer.Email=customerModel.Email;
-            account.Customer.Phone=customerModel.Phone;
-            account.Customer.Country=customerModel.Country;
-            account.Customer.City=customerModel.City;
+            if (account.AccountType == AccountType.Customer)
+            {
+                account.Name = customerModel.Name;
+                account.Customer.Name = customerModel.Name;
+                account.Customer.Email = customerModel.Email;
+                account.Customer.Phone = customerModel.Phone;
+                account.Customer.Country = customerModel.Country;
+                account.Customer.City = customerModel.City;
+            }
+            else if (account.AccountType == AccountType.Supplier)
+            {
+                account.Name = customerModel.Name;
+                account.Supplier.Name = customerModel.Name;
+                account.Supplier.Email = customerModel.Email;
+                account.Supplier.Phone = customerModel.Phone;
+                account.Supplier.Country = customerModel.Country;
+                account.Supplier.City = customerModel.City;
+            }
 
 await _applicationDbContext.SaveChangesAsync();
 return _mapper.Map<CustomerModel>(account.Customer);
