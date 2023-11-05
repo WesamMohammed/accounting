@@ -10,5 +10,6 @@ namespace jwt.Services
           Task<List<AccountShort>> GetMainAccountsCustomerType();
          Task<List<AccountShort>> GetMainAccountsSupplierTyse();
           Task<CustomerModel> UpdateCustomer(CustomerModel customerModel);
+        Task<CustomerModel> GetById(int id, AccountType type);
     }
 }

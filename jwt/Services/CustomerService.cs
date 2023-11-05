@@ -108,5 +108,21 @@ return customerModel;
             return _mapper.Map<List<AccountShort>>(accounts);
 
         }
+        public async Task<CustomerModel> GetById(int id,AccountType type)
+        {
+            CustomerModel model = null;
+            if (type == AccountType.Customer)
+            {
+                var res=await _applicationDbContext.Customers.FirstOrDefaultAsync(a=>a.Id==id);
+                model=_mapper.Map<CustomerModel>(res);
+            }
+            else if (type == AccountType.Customer)
+            {
+                var res = await _applicationDbContext.Suppliers.FirstOrDefaultAsync(a => a.Id == id);
+                model = _mapper.Map<CustomerModel>(res);
+            }
+            return model;
+        }
     }
+    
 }
