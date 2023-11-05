@@ -113,13 +113,13 @@ return customerModel;
             CustomerModel model = null;
             if (type == AccountType.Customer)
             {
-                var res=await _applicationDbContext.Customers.FirstOrDefaultAsync(a=>a.Id==id);
+                var res=await _applicationDbContext.Customers.Include(a=>a.Account).FirstOrDefaultAsync(a=>a.Id==id);
                 model=_mapper.Map<CustomerModel>(res);
             }
             else if (type == AccountType.Supplier)
             {
                 
-                var res = await _applicationDbContext.Suppliers.FirstOrDefaultAsync(a => a.Id == id);
+                var res = await _applicationDbContext.Suppliers.Include(a=>a.Account).FirstOrDefaultAsync(a => a.Id == id);
                 
                 model = _mapper.Map<CustomerModel>(res);
             }
