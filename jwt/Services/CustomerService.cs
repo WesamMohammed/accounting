@@ -118,7 +118,7 @@ return customerModel;
             }
             else if (type == AccountType.Customer)
             {
-                var res = await _applicationDbContext.Suppliers.Include(a=>a.Supplier).FirstOrDefaultAsync(a => a.Id == id);
+                var res = await _applicationDbContext.Suppliers.FirstOrDefaultAsync(a => a.Id == id);
                 model = _mapper.Map<CustomerModel>(res);
             }
             return model;
