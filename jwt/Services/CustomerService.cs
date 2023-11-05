@@ -91,7 +91,7 @@ namespace jwt.Services
             }
 
 await _applicationDbContext.SaveChangesAsync();
-return _mapper.Map<CustomerModel>(account.Customer);
+return customerModel;
 
         }
         
