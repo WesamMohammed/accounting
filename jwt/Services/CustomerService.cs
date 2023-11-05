@@ -118,7 +118,9 @@ return customerModel;
             }
             else if (type == AccountType.Customer)
             {
+                Console.WriteLine($"id--bef:{id}");
                 var res = await _applicationDbContext.Suppliers.FirstOrDefaultAsync(a => a.Id == id);
+                Console.WriteLine($"id:{res.Id}{res}");
                 model = _mapper.Map<CustomerModel>(res);
             }
             return model;
