@@ -48,7 +48,7 @@ namespace jwt.Controllers
             {
                 return NotFound();
             }
-            _applicationDbContext.Update(store);
+            storeEx.Name = store.Name;
             await _applicationDbContext.SaveChangesAsync();
 
             return Ok(store);
