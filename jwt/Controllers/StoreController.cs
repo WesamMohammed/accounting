@@ -28,5 +28,30 @@ namespace jwt.Controllers
             var stores = await _applicationDbContext.Stores.ToListAsync();
             return Ok(stores);
         }
+        [HttpGet]
+        public async Task<IActionResult>GetById(int id)
+        {
+            var store =  _applicationDbContext.Stores.Find(id);
+            if(store == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(store);
+        }
+        [HttpPut]
+        public async Task<IActionResult> Put(Store store)
+        {
+            var id = store.Id;
+            var storeEx = _applicationDbContext.Stores.Find(id);
+            if (storeEx == null)
+            {
+                return NotFound();
+            }
+            _applicationDbContext.Update(store);
+            await _applicationDbContext.SaveChangesAsync();
+
+            return Ok(store);
+        }
     }
 }
