@@ -53,7 +53,8 @@ namespace jwt.Services
                 AppearIn=AppearIn.FINANCIAL,
                 AccountNumber=(int)(++maxAccountNumber),
                 ParentId=Paretn.Id,
-                Customer=customer,
+                Customer=Paretn.AccountType==AccountType.Customer? customer:null,
+                Supplier = Paretn.AccountType == AccountType.Supplier ? _mapper.Map<Supplier>(customerModel) : null,
 
             };
         await _applicationDbContext.Account.AddAsync(account);
