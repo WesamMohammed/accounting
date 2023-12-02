@@ -15,6 +15,8 @@ using jwt.Controllers;
 using jwt.CachingServices;
 using System;
 using jwt.Seeder;
+using jwt.EfCoreExtensions;
+using WebApplication6.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -120,33 +122,12 @@ builder.Services.AddAuthentication(option =>
 
 });
 
-
+builder.Services.AddTransient<IServece2, Service2>();
+builder.Services.AddSingleton<IServece1, Service1>();
 var app = builder.Build();
 
 
-using (var scope = app.Services.CreateScope())
-{
-    await scope.ServiceProvider.GetRequiredService<ApplicationDbContext>().Database.MigrateAsync();
-    var services = scope.ServiceProvider;
-    var accounseeder=services.GetRequiredService<IDataSeeder>();
-    await accounseeder.SeedDataAsync();
-    var loggerFactory = services.GetRequiredService<ILoggerFactory>();
-    var logger = loggerFactory.CreateLogger("app");
-    try
-    {
-        var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
-        var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
-        await DefaultRoles.SeedRolesAsync(userManager, roleManager);
-        await DefaultUser.SeedAdminUserAsync(userManager, roleManager);
-        logger.LogInformation("Finished Seeding Default Data");
-        logger.LogInformation("Application Starting");
-
-    }
-    catch (Exception ex)
-    {
-        logger.LogWarning(ex, "An error occurred seeding the DB");
-    }
-}
+//app.UseCustomMigration().UseCustomSeeder();
 
     /*app.UseSimpleMiddleware();*/
 

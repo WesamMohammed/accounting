@@ -13,7 +13,6 @@ namespace jwt.Seeder
             this._dbContext = dbContext;
             _logger = logger;
 
-
         }
         public async Task SeedDataAsync()
         {
