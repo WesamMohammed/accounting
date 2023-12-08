@@ -122,8 +122,7 @@ builder.Services.AddAuthentication(option =>
 
 });
 
-builder.Services.AddTransient<IServece2, Service2>();
-builder.Services.AddSingleton<IServece1, Service1>();
+
 var app = builder.Build();
 
 
