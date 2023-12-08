@@ -126,7 +126,7 @@ builder.Services.AddAuthentication(option =>
 var app = builder.Build();
 
 
-//app.UseCustomMigration().UseCustomSeeder();
+app.UseCustomMigration().UseCustomSeeder();
 
     /*app.UseSimpleMiddleware();*/
 
